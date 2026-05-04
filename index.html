@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 
 		<style>
+
 			body {
 				font-family: Georgia, serif;
 				color: #ECECF5; 
@@ -86,11 +87,10 @@
 				border-right: 2px solid rgba(255, 255, 255, 0.4);
 				transition: background 0.2s ease;
 			}
-
+			
 			#danzaHudToggle:hover {
-				background: rgba(255, 255, 255, 0.25);
+			background: rgba(255, 255, 255, 0.25);
 			}
-
 			
 			#danzaHud {
 				position: fixed;
@@ -107,9 +107,9 @@
 				z-index: 10000;
 				display: flex;
 				flex-direction: column;
-				padding: 10px 12px;
 				box-sizing: border-box;
 				font-family: sans-serif;
+				overflow: hidden;
 			}
 
 			#danzaHud.open {
@@ -117,13 +117,13 @@
 			}
 
 			#danzaHudHeader {
+				flex-shrink: 0;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				font-weight: bold;
-				margin-bottom: 8px;
+				padding: 8px 10px;
 				border-bottom: 1px solid #ffffff33;
-				padding-bottom: 4px;
 			}
 
 			#danzaHudHeader button {
@@ -134,206 +134,21 @@
 				font-size: 16px;
 			}
 
-			#timeRow {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 8px;
-				font-size: 12px;
-				margin-bottom: 8px;
-			}
-
-			#timeRow input[type="range"] {
-				flex: 1;
-			}
-
-			#controls {
-				display: flex;
-				justify-content: center;
-				gap: 10px;
-				margin-bottom: 10px;
-			}
-
-			#controls button {
-				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid #ffffff55;
-				color: #fff;
-				padding: 4px 10px;
-				cursor: pointer;
-				border-radius: 4px;
-			}
-
-			#controls button:hover {
-				background: rgba(255, 255, 255, 0.18);
-			}
-
-			#trackText {
-				font-size: 13px;
-				margin-top: 4px;
-			}
-
-			#trackName {
-				font-weight: bold;
-				margin-bottom: 3px;
-			}
-
-			#trackInfo {
-				opacity: 0.8;
-			}
-			
-			@media (max-width: 768px) {
-
-			#danzaHudToggle {
-				position: fixed;
-				left: 0;
-				top: 0;
-				width: 14px;
-				height: 100vh;
-				background: rgba(255, 255, 255, 0.15);
-				backdrop-filter: blur(4px);
-				cursor: pointer;
-				z-index: 9999;
-				border-right: 2px solid rgba(255, 255, 255, 0.4);
-				transition: background 0.2s ease;
-			}
-
-			#danzaHudToggle:hover {
-				background: rgba(255, 255, 255, 0.25);
-			}
-
-			#danzaHud {
-				position: fixed;
-				left: 0;
-				top: 0;
-				width: 320px;
-				height: 100vh;
-				background: radial-gradient(circle at top, #1b2340 0, #050814 55%, #02030a 100%);
-				color: #fff;
-				box-shadow: 0 0 18px rgba(0, 0, 0, 0.7);
-				border-right: 1px solid #ffffff33;
-				transform: translateX(-100%);
-				transition: transform 0.3s ease;
-				z-index: 10000;
-				display: flex;
-				flex-direction: column;
-				padding: 10px 12px;
-				box-sizing: border-box;
-				font-family: sans-serif;
-			}
-
-			#danzaHud.open {
-				transform: translateX(0);
-			}
-
-			#danzaHudHeader {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				font-weight: bold;
-				margin-bottom: 8px;
+			#danzaSearchBar {
+				flex-shrink: 0;
+				padding: 6px 10px;
 				border-bottom: 1px solid #ffffff33;
-				padding-bottom: 4px;
+				background: rgba(0, 0, 0, 0.35);
 			}
 
-			#danzaHudHeader button {
-				background: transparent;
-				border: none;
-				color: #fff;
-				cursor: pointer;
-				font-size: 16px;
-			}
-
-			#timeRow {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 8px;
-				font-size: 12px;
-				margin-bottom: 8px;
-			}
-
-			#timeRow input[type="range"] {
-				flex: 1;
-			}
-
-			#controls {
-				display: flex;
-				justify-content: center;
-				gap: 10px;
-				margin-bottom: 10px;
-			}
-
-			#controls button {
-				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid #ffffff55;
-				color: #fff;
-				padding: 4px 10px;
-				cursor: pointer;
+			#danzaSearch {
+				width: 100%;
+				padding: 4px 6px;
 				border-radius: 4px;
-			}
-
-			#controls button:hover {
-				background: rgba(255, 255, 255, 0.18);
-			}
-
-			#trackText {
+				border: 1px solid #ffffff55;
+				background: rgba(0, 0, 0, 0.4);
+				color: #fff;
 				font-size: 13px;
-				margin-top: 4px;
-			}
-
-			#trackName {
-				font-weight: bold;
-				margin-bottom: 3px;
-			}
-
-			#trackInfo {
-				opacity: 0.8;
-			}
-
-			@media (max-width: 768px) {
-
-				#danzaHudToggle {
-					position: fixed;
-					left: 0;
-					top: 0;
-					width: 14px;
-					height: 100vh;
-					background: rgba(255, 255, 255, 0.15);
-					backdrop-filter: blur(4px);
-					cursor: pointer;
-					z-index: 9999;
-					border-right: 2px solid rgba(255, 255, 255, 0.4);
-					transition: transform 0.3s ease, background 0.2s ease;
-				}
-
-				#danzaHud.open ~ #danzaHudToggle {
-					transform: translateX(320px);
-				}
-
-				#danzaHud {
-					left: 0;
-					bottom: 0;
-					top: auto;
-					width: 100%;
-					height: 220px;
-					border-right: none;
-					border-top: 1px solid #ffffff33;
-					transform: translateY(100%);
-				}
-			}
-
-			#pageContent {
-				transition: transform 0.3s ease;
-			}
-
-			#danzaHud.open ~ #pageContent {
-				transform: translateX(320px);
-			}
-
-			@media (max-width: 768px) {
-				#danzaHud.open ~ #pageContent {
-					transform: translateY(-220px);
-				}
 			}
 
 			#danzaSearch::placeholder {
@@ -345,26 +160,197 @@
 				background: rgba(255,255,255,0.15);
 			}
 
-			#danzaListWrapper::-webkit-scrollbar {
-				width: 8px;
-				overflow-y:auto;
-				flex-shrink: 0;
+			#danzaHudScrollArea {
+				height: calc(100% - 60px);
+				display: flex;
+				flex: 1;
+				flex-direction: column;
+				overflow-y: auto;
+				padding: 8px 10px 10px 10px;
+				box-sizing: border-box;
 			}
 
-			#danzaListWrapper::-webkit-scrollbar-track {
+			#timeRow {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+				font-size: 12px;
+				margin-bottom: 8px;
+			}
+
+			#timeRow input[type="range"] {
+				flex: 1;
+			}
+
+			#controls {
+				display: flex;
+				justify-content: center;
+				gap: 10px;
+				margin-bottom: 10px;
+			}
+
+			#controls button {
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid #ffffff55;
+				color: #fff;
+				padding: 4px 10px;
+				cursor: pointer;
+				border-radius: 4px;
+			}
+
+			#controls button:hover {
+				background: rgba(255, 255, 255, 0.18);
+			}
+
+			#trackText {
+				font-size: 13px;
+				margin-top: 4px;
+			}
+
+			#trackName {
+				font-weight: bold;
+				margin-bottom: 3px;
+			}
+
+			#trackInfo {
+				opacity: 0.8;
+			}
+
+			.sectionTitle {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-weight: bold;
+				font-size: 13px;
+				color: #C0A060;
+				margin-bottom: 6px;
+				border-bottom: 1px solid #ffffff33;
+				padding-bottom: 2px;
+			}
+
+			#queueWrapper {
+				max-height: 500px;
+				overflow-y: auto;
+				border: 1px solid #ffffff22;
+				border-radius: 4px;
+				padding: 4px 6px;
+				box-sizing: border-box;
+			}
+
+			#queueList {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			#queueList li {
+				padding: 3px 4px;
+				font-size: 13px;
+				cursor: grab;
+				border-radius: 3px;
+			}
+
+			#queueList li.current {
+				background: rgba(255, 255, 255, 0.18);
+			}
+
+			#queueList li:hover {
+				background: rgba(255, 255, 255, 0.12);
+			}
+
+			#selectorWrapper {
+				max-height: 600px;
+				overflow-y: auto;
+				border: 1px solid #ffffff22;
+				border-radius: 4px;
+				padding: 4px 6px;
+				box-sizing: border-box;
+				margin-bottom: 4px;
+			}
+
+			#selectorList {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			#selectorList li {
+				padding: 3px 4px;
+				font-size: 13px;
+				cursor: pointer;
+				border-radius: 3px;
+			}
+
+			#selectorList li:hover {
+				background: rgba(255, 255, 255, 0.12);
+			}
+
+			#danzaHudScrollArea::-webkit-scrollbar,
+			#queueWrapper::-webkit-scrollbar,
+			#selectorWrapper::-webkit-scrollbar {
+				width: 8px;
+			}
+
+			#danzaHudScrollArea::-webkit-scrollbar-track,
+			#queueWrapper::-webkit-scrollbar-track,
+			#selectorWrapper::-webkit-scrollbar-track {
 				background: rgba(255, 255, 255, 0.08);
 				border-radius: 4px;
 			}
 
-			#danzaListWrapper::-webkit-scrollbar-thumb {
+			#danzaHudScrollArea::-webkit-scrollbar-thumb,
+			#queueWrapper::-webkit-scrollbar-thumb,
+			#selectorWrapper::-webkit-scrollbar-thumb {
 				background: rgba(255, 255, 255, 0.35);
 				border-radius: 4px;
 			}
 
-			#danzaListWrapper::-webkit-scrollbar-thumb:hover {
+			#danzaHudScrollArea::-webkit-scrollbar-thumb:hover,
+			#queueWrapper::-webkit-scrollbar-thumb:hover,
+			#selectorWrapper::-webkit-scrollbar-thumb:hover {
 				background: rgba(255, 255, 255, 0.55);
 			}
+			
+			#volumeRow {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 0px;
+			}
 
+			#volumeBar {
+				flex: 1;
+			}
+			
+			.dragHandle {
+				cursor: grab;
+				margin-right: 6px;
+				opacity: 0.6;
+				font-weight: bold;
+				font-size: 14px;
+			}
+			
+			.hudBtn {
+				background: rgba(255,255,255,0.08);
+				border: 1px solid #ffffff33;
+				color: #fff;
+				padding: 2px 8px;
+				font-size: 12px;
+				border-radius: 4px;
+				cursor: pointer;
+				transition: background 0.2s ease;
+			}
+
+			.hudBtn:hover {
+				background: rgba(255,255,255,0.18);
+			}
+			
+			#volumeRow.hidden {
+				display: none;
+			}
+
+			
 		</style>
 	</head>
 
@@ -373,78 +359,66 @@
 		<div id="danzaHudToggle"></div>
 
 		<div id="danzaHud">
-		  
 			<div id="danzaHudHeader">
-				<span>Danzas de Morel Campos</span>
-				<button id="danzaHudClose">✕</button>
+				<span>Danzas de Juan Morel Campos</span>
+				<button id="danzaHudCloseBtn">✕</button>
 			</div>
 
-			<input id="danzaSearch" type="text" placeholder="Buscar danza..." style="
-				width: 100%;
-				padding: 6px 8px;
-				margin-bottom: 10px;
-				border-radius: 4px;
-				border: 1px solid #ffffff44;
-				background: rgba(255,255,255,0.08);
-				color: #fff;
-			">
-
-			<img id="volImage" src="" width="260" style="border:2px solid #ffffffaa; margin:10px auto 15px; display:block;">
-
-			<div id="timeRow">
-				<span id="currentTime">0:00</span>
-				<input type="range" id="seek" min="0" max="100" value="0">
-				<span id="duration">0:00</span>
-			</div>
-
-			<div id="controls">
-				<button id="prevBtn">⟨⟨</button>
-				<button id="playPauseBtn">⏵</button>
-				<button id="nextBtn">⟩⟩</button>
-			</div>
-
-			<div id="trackText">
-				<div id="trackName"></div>
-				<div id="trackInfo"></div>
+			<div id="danzaSearchBar">
+				<input id="danzaSearch" type="text" placeholder="Buscar danza..." />
 			</div>
 			
-			<br><br>
-			<div id="danzaViewer" 
-				style="margin-top:15px; padding:10px; border-top:1px solid #ffffff33;">
+			
+			<div id="danzaHudScrollArea">
+				
+				<img id="volImage" src="" width="260" style="border:2px solid #ffffffaa; margin:10px auto 15px; display:block;">
+				
+				<div id="playerSection">
+					<div id="timeRow">
+						<span id="currentTime">0:00</span>
+						<input type="range" id="seekBar" min="0" max="100" value="0">
+						<span id="duration">0:00</span>
+					</div>
+					
+					<div id="volumeRow" class="hidden">
+						<img id="volumeIcon" src="volume.png" style="width:18px; opacity:0.8;">
+						<input type="range" id="volumeBar" min="0" max="1" step="0.01" value="1">
+					</div>
+					
+					<div id="controls">
+						<button id="prevBtn">⏮</button>
+						<button id="playPauseBtn">▶</button>
+						<button id="nextBtn">⏭</button>
+					</div>
 
-				<div style="display:flex; justify-content:space-between; align-items:center;">
-					<h3 style="font-size:14px; color:#C0A060; margin:0;">Danzas de Juan Morel Campos</h3>
-
-					<button id="viewerToggle" style="
-						background:rgba(255,255,255,0.1);
-						border:1px solid #ffffff44;
-						color:#fff;
-						padding:2px 8px;
-						border-radius:4px;
-						cursor:pointer;
-						font-size:12px;
-						">Expandir
-					</button>
+					<div id="trackText">
+						<div id="trackName"></div>
+						<div id="trackInfo"></div>
+					</div>
 				</div>
 
-				<div id="danzaListWrapper" style="
-					height:0;
-					overflow:hidden;
-					transition:height 0.3s ease;
-					margin-top:8px;
-				">
 				
-					<div id="danzaList" style="font-size:13px; line-height:1.4;"></div>
-				
+				<div id="queueSection">
+					<div class="sectionTitle">Queue
+						<button id="rerollBtn" class="hudBtn">Reroll</button>
+					</div>
+					<div id="queueWrapper">
+						<ul id="queueList"></ul>
+					</div>
+				</div>
+
+				<div id="selectorSection">
+					<div class="sectionTitle">Danzas de Juan Morel Campos
+						<button id="collapseDanzasBtn" class="hudBtn" style="float:right;">Colapsar</button>
+					</div>
+					<div id="selectorWrapper">
+						<ul id="selectorList"></ul>
+					</div>
 				</div>
 			</div>
-
-
-		
-
-
 		</div>
 
+		<audio id="audioPlayer"></audio>
 
 		<div id="pageContent">
 			<center>
@@ -874,7 +848,7 @@
 				}
 			});
 		
-		
+			
 			
 			const danzas = [
 			  {
@@ -885,14 +859,14 @@
 				  { file: "2 Maldito Amor.mp3", name: "Maldito Amor", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
 				  { file: "3 Tu imagen.mp3", name: "Tu imagen", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
 				  { file: "4 La Conga.mp3", name: "La Conga", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
-				  { file: "4 Sin ti jamás.mp3", name: "Sin ti jamás", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
-				  { file: "5 Buen Humor.mp3", name: "Buen Humor", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
-				  { file: "6 Idilio.mp3", name: "Idilio", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
-				  { file: "7 No te ocupes.mp3", name: "No te ocupes", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
-				  { file: "8 Conversación.mp3", name: "Conversación", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
-				  { file: "9 Tu divino rostro.mp3", name: "Tu divino rostro", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
-				  { file: "10 Virgilia.mp3", name: "Virgilia", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
-				  { file: "11 Carmela.mp3", name: "Carmela", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" }
+				  { file: "5 Sin ti jamás.mp3", name: "Sin ti jamás", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "6 Buen Humor.mp3", name: "Buen Humor", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "7 Idilio.mp3", name: "Idilio", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "8 No te ocupes.mp3", name: "No te ocupes", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "9 Conversación.mp3", name: "Conversación", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "10 Tu divino rostro.mp3", name: "Tu divino rostro", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "11 Virgilia.mp3", name: "Virgilia", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "12 Carmela.mp3", name: "Carmela", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" }
 				]
 			  },
 			  {
@@ -1092,267 +1066,304 @@
 				]
 			  }
 			];
-			let historyBack = [];
-			let historyForward = [];
-			let volIndex = 0;
-			let trackIndex = 0;
-			let shuffle = true;
-			const audio = new Audio();
 
-
-			function loadTrack() {
-			  const vol = danzas[volIndex];
-			  const track = vol.tracks[trackIndex];
-
-				audio.src = `Danzas/Vol ${vol.vol}/${track.file}`;
-				document.getElementById("volImage").src = `Danzas/Vol ${vol.vol}/Vol ${vol.vol}.jpg`;
-				document.getElementById("trackName").textContent = track.name;
-				document.getElementById("trackInfo").textContent = track.info;
-
-				audio.load();
-			}
-
-
-			function playTrack() {
-			  audio.play();
-			  document.getElementById("playPauseBtn").textContent = "⏸";
-			}
-
-			function pauseTrack() {
-			  audio.pause();
-			  document.getElementById("playPauseBtn").textContent = "⏵";
-			}
-
-
-			const hud = document.getElementById("danzaHud");
-			const toggle = document.getElementById("danzaHudToggle");
-			const closeBtn = document.getElementById("danzaHudClose");
-
-			toggle.addEventListener("click", () => {
-			  hud.classList.toggle("open");
-			});
-
-			closeBtn.addEventListener("click", () => {
-			  hud.classList.remove("open");
-			});
-
-
-			function nextTrack() {
-
-			if (historyForward.length > 0) {
-				historyBack.push({ v: volIndex, t: trackIndex });
-
-				const next = historyForward.pop();
-				volIndex = next.v;
-				trackIndex = next.t;
-
-				loadTrack();
-				playTrack();
-				return;
-			}
-
-			historyBack.push({ v: volIndex, t: trackIndex });
-
-			 if (shuffle) {
-			 volIndex = Math.floor(Math.random() * danzas.length);
-			 rackIndex = Math.floor(Math.random() * danzas[volIndex].tracks.length);
-			 } 
-			 else {
-				trackIndex++;
-			if (trackIndex >= danzas[volIndex].tracks.length) {
-				  trackIndex = 0;
-				  volIndex++;
-				  if (volIndex >= danzas.length) volIndex = 0;
-				}
-			  }
-
-			  loadTrack();
-			  playTrack();
-			}
-
-
-			function prevTrack() {
-			  if (historyBack.length > 0) {
-				historyForward.push({ v: volIndex, t: trackIndex });
-
-				const prev = historyBack.pop();
-				volIndex = prev.v;
-				trackIndex = prev.t;
-
-				loadTrack();
-				playTrack();
-				return;
-			  }
-
-			  trackIndex--;
-			  if (trackIndex < 0) {
-				volIndex--;
-				if (volIndex < 0) volIndex = danzas.length - 1;
-				trackIndex = danzas[volIndex].tracks.length - 1;
-			  }
-
-			  loadTrack();
-			  playTrack();
-			}
-
-			audio.addEventListener("ended", nextTrack);
-
-
-			audio.addEventListener("timeupdate", () => {
-			  const seek = document.getElementById("seek");
-			  if (!isNaN(audio.duration) && audio.duration > 0) {
-				seek.value = (audio.currentTime / audio.duration) * 100;
-			  }
-			  document.getElementById("currentTime").textContent = formatTime(audio.currentTime);
-			  document.getElementById("duration").textContent = formatTime(audio.duration);
-			});
-
-			document.getElementById("seek").addEventListener("input", (e) => {
-			  if (!isNaN(audio.duration) && audio.duration > 0) {
-				audio.currentTime = (e.target.value / 100) * audio.duration;
-			  }
-			});
-
-			function formatTime(sec) {
-			  if (isNaN(sec) || !isFinite(sec)) return "0:00";
-			  const m = Math.floor(sec / 60);
-			  const s = Math.floor(sec % 60).toString().padStart(2, "0");
-			  return `${m}:${s}`;
-			}
-
-			document.getElementById("playPauseBtn").onclick = () =>
-			  audio.paused ? playTrack() : pauseTrack();
-
-			document.getElementById("nextBtn").onclick = nextTrack;
-			document.getElementById("prevBtn").onclick = prevTrack;
-
-
-			document.getElementById("danzaSearch").addEventListener("input", function () {
-			  const query = this.value.toLowerCase().trim();
-			  if (query === "") return;
-
-			  for (let v = 0; v < danzas.length; v++) {
-				for (let t = 0; t < danzas[v].tracks.length; t++) {
-				  if (danzas[v].tracks[t].name.toLowerCase().includes(query)) {
-					volIndex = v;
-					trackIndex = t;
-					loadTrack();
-					return;
-				  }
-				}
-			  }
-			});
-
-
-			(function loadTuRegresoFirst() {
-			  for (let v = 0; v < danzas.length; v++) {
-				for (let t = 0; t < danzas[v].tracks.length; t++) {
-				  if (danzas[v].tracks[t].name.toLowerCase() === "tu regreso") {
-					volIndex = v;
-					trackIndex = t;
-					return;
-				  }
-				}
-			  }
-			})();
-
-			loadTrack();
-
-			function buildDanzaViewer() {
-			  const container = document.getElementById("danzaList");
-			  container.innerHTML = "";
-
-			  for (let v = 0; v < danzas.length; v++) {
-				const vol = danzas[v];
-
-				const volRow = document.createElement("div");
-				volRow.style.display = "flex";
-				volRow.style.alignItems = "center";
-				volRow.style.margin = "10px 0 6px";
-
-				const thumb = document.createElement("img");
-				thumb.src = `Danzas/Vol ${vol.vol}/Vol ${vol.vol}.jpg`;
-				thumb.style.width = "40px";
-				thumb.style.height = "40px";
-				thumb.style.objectFit = "cover";
-				thumb.style.border = "1px solid #ffffff55";
-				thumb.style.marginRight = "10px";
-				thumb.style.borderRadius = "4px";
-
-				const volTitle = document.createElement("div");
-				volTitle.textContent = `Vol. ${vol.vol}`;
-				volTitle.style.fontWeight = "bold";
-				volTitle.style.color = "#8FB8FF";
-				volTitle.style.fontSize = "14px";
-
-				volRow.appendChild(thumb);
-				volRow.appendChild(volTitle);
-				container.appendChild(volRow);
-
-				vol.tracks.forEach((track, tIndex) => {
-				  const item = document.createElement("div");
-				  item.textContent = `• ${track.name}`;
-				  item.style.cursor = "pointer";
-				  item.style.padding = "2px 0";
-				  item.style.marginLeft = "8px";
-
-				  item.onmouseover = () => item.style.color = "#7FE8FF";
-				  item.onmouseout  = () => item.style.color = "#fff";
-
-				  item.onclick = () => {
-					volIndex = v;
-					trackIndex = tIndex;
-					loadTrack();
-					playTrack();
-				  };
-
-				  container.appendChild(item);
+			document.addEventListener("DOMContentLoaded", () => {
+				
+				const hud = document.getElementById("danzaHud");
+				const hudToggle = document.getElementById("danzaHudToggle");
+				const hudClose = document.getElementById("danzaHudCloseBtn");
+				const audio = document.getElementById("audioPlayer");
+				const playPauseBtn = document.getElementById("playPauseBtn");
+				const nextBtn = document.getElementById("nextBtn");
+				const prevBtn = document.getElementById("prevBtn");
+				const seekBar = document.getElementById("seekBar");
+				const currentTimeEl = document.getElementById("currentTime");
+				const durationEl = document.getElementById("duration");
+				const trackNameEl = document.getElementById("trackName");
+				const trackInfoEl = document.getElementById("trackInfo");
+				const queueListEl = document.getElementById("queueList");
+				const selectorListEl = document.getElementById("selectorList");
+				const searchInput = document.getElementById("danzaSearch");
+				const selectorWrapper = document.getElementById("selectorWrapper");
+				const tuRegresoLink = document.getElementById("tuRegresoLink");
+				const volumeBar = document.getElementById("volumeBar");
+				const collapseBtn = document.getElementById("collapseDanzasBtn");
+				const rerollBtn = document.getElementById("rerollBtn");
+				const volImage = document.getElementById("volImage");
+				
+				let volIndex = 0;
+				let trackIndex = 0;
+				let rngSeed = Date.now();
+				let playQueue = [];     
+				let playHistory = [];   
+				let queueIndex = 0;  
+				let draggedIndex = null;
+				let danzasCollapsed = false;
+				
+				hudToggle.addEventListener("click", () => {
+					hud.classList.add("open");
 				});
-			  }
-			}
 
+				hudClose.addEventListener("click", () => {
+					hud.classList.remove("open");
+				});
 
-			buildDanzaViewer();
+				playPauseBtn.addEventListener("click", () => {
+					if (audio.paused) playTrack();
+					else pauseTrack();
+				});
 
-			const viewerToggle = document.getElementById("viewerToggle");
-			const wrapper = document.getElementById("danzaListWrapper");
+				nextBtn.addEventListener("click", nextTrack);
+				prevBtn.addEventListener("click", prevTrack);
 
-			let viewerOpen = false;
+				audio.addEventListener("timeupdate", () => {
+					if (!audio.duration) return;
+					const pct = (audio.currentTime / audio.duration) * 100;
+					seekBar.value = pct;
+					currentTimeEl.textContent = formatTime(audio.currentTime);
+					durationEl.textContent = formatTime(audio.duration);
+				});
 
-			viewerToggle.onclick = () => {
-			  viewerOpen = !viewerOpen;
+				seekBar.addEventListener("input", () => {
+					if (!audio.duration) return;
+					const pct = seekBar.value / 100;
+					audio.currentTime = pct * audio.duration;
+				});
 
-			  if (viewerOpen) {
-				wrapper.style.height = "220px"; 
-				viewerToggle.textContent = "Colapsar";
-				wrapper.style.overflowY = "auto";
+				audio.addEventListener("ended", () => {
+					nextTrack();
+				});
 
-			  } else {
-				wrapper.style.height = "0";
-				viewerToggle.textContent = "Expandir";
-			  }
-			};
+				searchInput.addEventListener("input", () => {
+					const q = searchInput.value.toLowerCase().trim();
+					selectorListEl.innerHTML = "";
 
-			
-			document.getElementById("tuRegresoLink").addEventListener("click", () => {
+					if (!q) {
+						buildSelectorList();
+						return;
+					}
 
-				hud.classList.add("open");
+					for (let v = 0; v < danzas.length; v++) {
+						for (let t = 0; t < danzas[v].tracks.length; t++) {
+							const track = danzas[v].tracks[t];
+							if (track.name.toLowerCase().includes(q)) {
+								const li = document.createElement("li");
+								li.textContent = `${track.name} (Vol. ${danzas[v].vol})`;
+								li.addEventListener("click", () => {
+									const newItem = { v, t };
+									playQueue.splice(queueIndex + 1, 0, newItem);
+									queueIndex = queueIndex + 1;
+									loadFromQueue();
+									playTrack();
+									updateQueueViewer();
+								});
+								selectorListEl.appendChild(li);
+							}
+						}
+					}
+				});
+				
+				volumeBar.addEventListener("input", () => {
+					audio.volume = volumeBar.value;
+				});
+				
+				collapseBtn.addEventListener("click", () => {
+					danzasCollapsed = !danzasCollapsed;
+					selectorWrapper.style.display = danzasCollapsed ? "none" : "block";
+					collapseBtn.textContent = danzasCollapsed ? "Expandir" : "Colapsar";
+				});
+				
+				rerollBtn.addEventListener("click", () => {
+					const tuRegreso = playQueue[0];
+					playQueue = [tuRegreso];
+					queueIndex = 0;
+					generateNextTracks(20);
+					loadFromQueue();
+					updateQueueViewer();
+				});
+				
+				volImage.addEventListener("click", () => {
+					const row = document.getElementById("volumeRow");
+					row.classList.toggle("hidden");
+				});
+				
+				function seededRandom(seed) {
+					let x = Math.sin(seed++) * 10000;
+					return x - Math.floor(x);
+				}
+				
+				function initQueue() {
+					let tuRegreso = null;
+					for (let v = 0; v < danzas.length; v++) {
+						for (let t = 0; t < danzas[v].tracks.length; t++) {
+							if (danzas[v].tracks[t].name.toLowerCase() === "tu regreso") {
+								tuRegreso = { v, t };
+								break;
+							}
+						}
+						if (tuRegreso) break;
+					}
 
-				for (let v = 0; v < danzas.length; v++) {
-					for (let t = 0; t < danzas[v].tracks.length; t++) {
-						if (danzas[v].tracks[t].name.toLowerCase() === "tu regreso") {
-							volIndex = v;
-							trackIndex = t;
-							historyForward = [];
-							loadTrack();
+					if (!tuRegreso) {
+						tuRegreso = { v: 0, t: 0 };
+					}
+
+					playQueue = [];
+					playHistory = [];
+					queueIndex = 0;
+
+					playQueue.push(tuRegreso);
+					generateNextTracks(20);
+					loadFromQueue();
+					updateQueueViewer();
+				}
+
+				function generateNextTracks(count = 20) {
+					for (let i = 0; i < count; i++) {
+						rngSeed++;
+						let v = Math.floor(seededRandom(rngSeed) * danzas.length);
+						let t = Math.floor(seededRandom(rngSeed + 999) * danzas[v].tracks.length);
+						playQueue.push({ v, t });
+					}
+				}
+
+				function loadFromQueue() {
+					const item = playQueue[queueIndex];
+					if (!item) return;
+					volIndex = item.v;
+					trackIndex = item.t;
+					loadTrack();
+				}
+
+				function nextTrack() {
+					if (playQueue[queueIndex]) {
+						playHistory.push(playQueue[queueIndex]);
+					}
+
+					queueIndex++;
+
+					if (queueIndex >= playQueue.length) {
+						generateNextTracks(20);
+					}
+
+					loadFromQueue();
+					playTrack();
+					updateQueueViewer();
+				}
+
+				function prevTrack() {
+					if (queueIndex === 0) return;
+					queueIndex--;
+					loadFromQueue();
+					playTrack();
+					updateQueueViewer();
+				}
+
+				function loadTrack() {
+					const track = danzas[volIndex].tracks[trackIndex];
+					audio.src = `Danzas/Vol ${danzas[volIndex].vol}/${track.file}`;
+					trackNameEl.textContent = track.name;
+					trackInfoEl.textContent = `Vol. ${danzas[volIndex].vol} • ${track.info || ""}`;
+					const volImage = document.getElementById("volImage");
+					volImage.src = `Danzas/Vol ${danzas[volIndex].vol}/Vol ${danzas[volIndex].vol}.jpg`;
+				}
+
+				function playTrack() {
+					audio.play();
+					playPauseBtn.textContent = "⏸";
+				}
+
+				function pauseTrack() {
+					audio.pause();
+					playPauseBtn.textContent = "▶";
+				}
+
+				function formatTime(sec) {
+					sec = Math.floor(sec);
+					const m = Math.floor(sec / 60);
+					const s = sec % 60;
+					return `${m}:${s.toString().padStart(2, "0")}`;
+				}
+
+				function updateQueueViewer() {
+					queueListEl.innerHTML = "";
+					for (let i = 0; i < playQueue.length; i++) {
+						const item = playQueue[i];
+						const track = danzas[item.v].tracks[item.t];
+						const li = document.createElement("li");
+						li.textContent = track.name;
+						li.innerHTML = `<span class="dragHandle">≡</span> ${track.name}`;
+						li.draggable = i !== 0; 
+						if (i === queueIndex) li.classList.add("current");
+
+						li.addEventListener("click", () => {
+							queueIndex = i;
+							loadFromQueue();
 							playTrack();
-							return;
+							updateQueueViewer();
+						});
+
+						li.addEventListener("dragstart", () => {
+							draggedIndex = i;
+						});
+
+						li.addEventListener("dragover", (e) => {
+							e.preventDefault();
+						});
+
+						li.addEventListener("drop", () => {
+							if (draggedIndex === null) return;
+							if (draggedIndex === 0 || i === 0) return;
+							const item = playQueue.splice(draggedIndex, 1)[0];
+							playQueue.splice(i, 0, item);
+							draggedIndex = null;
+							updateQueueViewer();
+						});
+
+						queueListEl.appendChild(li);
+					}
+				}
+
+				function buildSelectorList() {
+					selectorListEl.innerHTML = "";
+					for (let v = 0; v < danzas.length; v++) {
+						const volHeader = document.createElement("li");
+						volHeader.textContent = `Vol. ${danzas[v].vol}`;
+						volHeader.style.fontWeight = "bold";
+						volHeader.style.opacity = "0.8";
+						selectorListEl.appendChild(volHeader);
+
+						for (let t = 0; t < danzas[v].tracks.length; t++) {
+							const track = danzas[v].tracks[t];
+							const li = document.createElement("li");
+							li.textContent = `• ${track.name}`;
+							li.addEventListener("click", () => {
+								const newItem = { v, t };
+								playQueue.splice(queueIndex + 1, 0, newItem);
+								queueIndex = queueIndex + 1;
+								loadFromQueue();
+								playTrack();
+								updateQueueViewer();
+							});
+							selectorListEl.appendChild(li);
 						}
 					}
 				}
-			});
+			
+				if (tuRegresoLink) {
+					tuRegresoLink.addEventListener("click", () => {
+						hud.classList.add("open");
+						initQueue();
+						playTrack();
+					});
+				}
+				
+				
+			initQueue();
+			buildSelectorList();
+		});
 
-		</script>
+	</script>
 
 	</body>
 </html>
