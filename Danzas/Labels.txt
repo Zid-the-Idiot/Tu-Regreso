@@ -1,0 +1,601 @@
+I want to make a Danza radio feature.
+I have a file called Danzas. In it I have 12 files called "Vol <number>" ranging from 1 to 12. Each one has  either 10, 11, 12, 13, or 14 .mp3 files named with a leading number and it's respective name. Each Vol. has a file called "Vol <number>.jpg" with the same range. Make a radio that plays all of these. Use the following format to present the reproduction.
+
+		   Vol <number>.jpg
+0:00			Slider		     Time duration
+Go to preceding track      Pause          Go to next track
+Name
+Some Name Here, intérprete | Danzas de Morel Campos Vol.()
+
+The following is a list of the names of the files, the volume each corresponds to, the information put on the Some Name Here, intérprete | Danzas de Morel Campos Vol.(). The name with a number to the left is the name of the file. The name under is the name of the danza that goes on Name.
+
+Vol.1 
+1 Influencia del Arte
+Influencia del Arte
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+2 Maldito Amor
+Maldito Amor
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+3 Tu imagen
+Tu imagen
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+4 La Conga
+La Conga
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+4 Sin ti jamás
+Sin ti jamás
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+5 Buen Humor
+Buen Humor
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+6 Idilio
+Idilio
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+7 No te ocupes
+No te ocupes
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+8 Conversación
+Conversación
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+9 Tu divino rostro
+Tu divino rostro
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+10 Virgilia
+Virgilia
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+11 Carmela
+Carmela
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1
+
+
+Vol.2
+1 En Alta Mar
+En Alta Mar
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+2 La Gilda
+La Gilda
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+3 El brazo fuerte
+El brazo fuerte
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+4 La Belleza
+La Belleza
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+5 El rabo de la culebra
+El rabo de la culebra
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+6 Máscaras Alegres
+Máscaras Alegres
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+7 La Mayoría
+La Mayoría
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+8 Por ti suspiro
+Por ti suspiro
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+9 Tuya es mi vida
+Tuya es mi vida
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+10 Ensueños de amor
+Ensueños de amor
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+11 Lamentos de un cesante
+Lamentos de un cesante
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+12 Los Faroles
+Los Faroles
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2
+
+
+Vol.3
+1 ¿Qué será
+¿Qué será?
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+2 Alma Sublime
+Alma Sublime
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+3 Joaquina
+Joaquina
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+4 Tormento
+Tormento
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+5 También lo dudo
+También lo dudo
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+6 Noche Deliciosa
+Noche Deliciosa
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+7 El Ciclón
+El Ciclón
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+8 No me toques
+No me toques
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+9 Tu regreso
+Tu regreso
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+10 Goces y penas
+Goces y penas
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+11 La Julianita
+La Julianita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+12 Sueños dorados
+Sueños dorados
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+13 Bellos Ojos
+Bellos Ojos
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+14 Elvira
+Elvira
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3
+
+
+Vol.4
+1 Si te toco
+Si te toco
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+2 Di que me amas
+Di que me amas
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+3 Un Conflicto
+Un Conflicto
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+4 Candorosa
+Candorosa
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+5 Vano Empeño
+Vano Empeño
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+6 Viva La Pepa
+Viva La Pepa
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+7 Anita
+Anita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+8 No desconfíes
+No desconfíes
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+9 Bendita seas
+Bendita seas
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+10 Mis penas
+Mis penas
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+11 Ten piedad
+Ten piedad
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+12 La Incógnita
+La Incógnita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4
+
+
+Vol.5
+1 La Nene
+La Nene
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+2 Un diálogo
+Un diálogo
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+3 Toda corazón
+Toda corazón
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+4 Placeres de la vida
+Placeres de la vida
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+5 Sin ti no puedo vivir
+Sin ti no puedo vivir
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+6 La Majabaca
+La Majabaca
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+7 Vuelta a la vida
+Vuelta a la vida
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+8 Si me quisieras
+Si me quisieras
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+9 La Lila
+La Lila
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+10 Amor en el Campo
+Amor en el Campo
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+11 Perlas de mi Patria
+Perlas de mi Patria
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+12 Vinagre
+Vinagre
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5
+
+
+Vol.6
+1 Cielo de Encanto
+Cielo de Encanto
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+2 Divina Enriqueta
+Divina Enriqueta
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+3 No me olvides
+No me olvides
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+4 Las dos Marías
+Las dos Marías
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+5 Carnaval
+Carnaval
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+6 La Bella Margot
+La Bella Margot
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+7 Fiesta de Amigos
+Fiesta de Amigos
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+8 El Torbellino
+El Torbellino
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+9 La Bulliciosa
+La Bulliciosa
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+10 La graciosa pareja
+La graciosa pareja
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+11 La Julita
+La Julita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+12 La Sorpresa
+La Sorpresa
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6
+
+
+Vol.7
+1 Gloria
+Gloria
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+2 Hotel Marina
+Hotel Marina
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+3 La niña bonita
+La niña bonita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+4 Angelita
+Angelita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+5 El Mareo
+El Mareo
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+6 Las Máscaras
+Las Máscaras
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+7 De Antifaz
+De Antifaz
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+8 El gato flaco
+El gato flaco
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+9 El poder de una mirada
+El poder de una mirada
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+10 El Trueno
+El Trueno
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+11 Mi Perla
+Mi Perla
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+12 El Gancho
+El Gancho
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7
+
+
+Vol.8
+1 Ausencia
+Ausencia
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+2 La Isabelita
+La Isabelita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+3 Feliz encuentro
+Feliz encuentro
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+4 Herminia
+Herminia
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+5 Soñando
+Soñando
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+6 Consuelo
+Consuelo
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+7 La Fumadora
+La Fumadora
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+8 Bella Ilusión
+Bella Ilusión
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+9 La Feria
+La Feria
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+10 No me martirices
+No me martirices
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+11 La Traviesa
+La Traviesa
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8
+
+Vol.9
+1 En Alta Mar
+En Alta Mar
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+2 La Gilda
+La Gilda
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+3 El brazo fuerte
+El brazo fuerte
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+4 La Belleza
+La Belleza
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+5 El rabo de la culebra
+El rabo de la culebra
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+6 Máscaras Alegres
+Máscaras Alegres
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+7 La Mayoría
+La Mayoría
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+8 Por ti suspiro
+Por ti suspiro
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+9 Tuya es mi vida
+Tuya es mi vida
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+10 Ensueños de amor
+Ensueños de amor
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+11 Lamentos de un cesante
+Lamentos de un cesante
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+12 Los Faroles
+Los Faroles
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9
+
+
+
+Vol.10
+1 Mi Súplica
+Mi Súplica
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+2 Amor Increscendo
+Amor Increscendo
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+3 La Generosa
+La Generosa
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+4 Música Clásica
+Música Clásica
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+5 El último adiós
+El último adiós
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+6 El Microbio
+El Microbio
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+7 La niña de los ojos bonitos
+La niña de los ojos bonitos
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+8 Un recuerdo
+Un recuerdo
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+9 Sarito
+Sarito
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+10 La Luisita
+La Luisita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10
+
+
+Vol.11
+1 Flores Silvestres
+Flores Silvestres
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+2 Por qué no me amas
+Por qué no me amas
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+3 El Bouquet
+El Bouquet
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+4 Anónima
+Anónima
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+5 Un baile de máscaras
+Un baile de máscaras
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+6 Las dos hermanas
+Las dos hermanas
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+7 Robinson
+Robinson
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+8 Paula, camisa sucia
+Paula, camisa sucia
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+9 La bella trigueñita
+La bella trigueñita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+10 El Mangó
+El Mangó
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+11 El Bacalao
+El Bacalao
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11
+
+
+Vol.12
+1 Acuérdate de mi
+Acuérdate de mi
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+2 La Lolita
+La Lolita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+3 Graciosa niña
+Graciosa niña
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+4 La Carlotita
+La Carlotita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+5 Contémplame
+Contémplame
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+6 La caña de Veracruz
+La caña de Veracruz
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+7 La Lupita
+La Lupita
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+8 Lo de siempre
+Lo de siempre
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+9 Simpatías
+Simpatías
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+10 La gallina ciega
+La gallina ciega
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+11 La Rutina
+La Rutina
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12
+
+12 El cognac Jerez
+El cognac Jerez
+Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12

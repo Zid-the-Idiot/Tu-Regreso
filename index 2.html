@@ -1,0 +1,1369 @@
+<html>
+	<head>
+
+		<title>Danza: "Tu Regreso"</title>
+		<meta charset="UTF-8">
+
+		<style>
+
+			body {
+				font-family: Georgia, serif;
+				color: #ECECF5; 
+				line-height: 1.6;
+				background: url("Stars.gif");
+				background-attachment: fixed;
+			}
+
+			.night-panel {
+				width: 800px;
+				margin: 0 auto;
+				background: rgba(20, 10, 30, 0.8); 
+				padding: 40px;
+				border: 1px solid #C0A060;
+				backdrop-filter: blur(3px);
+			}
+			
+			h1, h2 {
+				color: #C0A060;
+				font-family: Georgia, serif;
+				text-shadow: 0 0 8px #C0A060;
+				letter-spacing: 2px;
+				text-align: center;
+			  }
+			
+			.star-hr {
+				border: 0;
+				height: 1px;
+				background: linear-gradient(to right, transparent, #C0A060, transparent);
+				margin: 40px 0;
+			}
+
+			table {
+				background: rgba(20, 20, 40, 0.6);
+				color: #ECECF5;
+			}
+
+			th {
+				background: rgba(60, 60, 100, 0.7);
+				color: #ECECF5;
+			}
+
+			td {
+				color: #ECECF5;
+			}
+
+			@font-face {
+				src: url(GreatVibes-Regular.ttf);
+				font-family: greatvibes;
+				font-weight: bold;
+			}
+
+			.fade {
+				opacity: 0;
+				visibility: hidden;
+				max-height: 0;
+				overflow: hidden;
+				pointer-events: none;
+				transition: opacity 1.2s ease, max-height 1.2s ease;
+			}
+
+			.fade.show {
+				opacity: 1;
+				visibility: visible;
+				max-height: 2000px;
+				pointer-events: auto;
+			}
+
+			#danzaHudToggle {
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 14px;
+				height: 100vh;
+				background: rgba(255, 255, 255, 0.15);
+				backdrop-filter: blur(4px);
+				cursor: pointer;
+				z-index: 9999;
+				border-right: 2px solid rgba(255, 255, 255, 0.4);
+				transition: background 0.2s ease;
+			}
+			
+			#danzaHudToggle:hover {
+			background: rgba(255, 255, 255, 0.25);
+			}
+			
+			#danzaHud {
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 320px;
+				height: 100vh;
+				background: radial-gradient(circle at top, #1b2340 0, #050814 55%, #02030a 100%);
+				color: #fff;
+				box-shadow: 0 0 18px rgba(0, 0, 0, 0.7);
+				border-right: 1px solid #ffffff33;
+				transform: translateX(-100%);
+				transition: transform 0.3s ease;
+				z-index: 10000;
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+				font-family: sans-serif;
+				overflow: hidden;
+			}
+
+			#danzaHud.open {
+				transform: translateX(0);
+			}
+
+			#danzaHudHeader {
+				flex-shrink: 0;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-weight: bold;
+				padding: 8px 10px;
+				border-bottom: 1px solid #ffffff33;
+			}
+
+			#danzaHudHeader button {
+				background: transparent;
+				border: none;
+				color: #fff;
+				cursor: pointer;
+				font-size: 16px;
+			}
+
+			#danzaSearchBar {
+				flex-shrink: 0;
+				padding: 6px 10px;
+				border-bottom: 1px solid #ffffff33;
+				background: rgba(0, 0, 0, 0.35);
+			}
+
+			#danzaSearch {
+				width: 100%;
+				padding: 4px 6px;
+				border-radius: 4px;
+				border: 1px solid #ffffff55;
+				background: rgba(0, 0, 0, 0.4);
+				color: #fff;
+				font-size: 13px;
+			}
+
+			#danzaSearch::placeholder {
+				color: #ffffff77;
+			}
+
+			#danzaSearch:focus {
+				outline: none;
+				background: rgba(255,255,255,0.15);
+			}
+
+			#danzaHudScrollArea {
+				height: calc(100% - 60px);
+				display: flex;
+				flex: 1;
+				flex-direction: column;
+				overflow-y: auto;
+				padding: 8px 10px 10px 10px;
+				box-sizing: border-box;
+			}
+
+			#timeRow {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+				font-size: 12px;
+				margin-bottom: 8px;
+			}
+
+			#timeRow input[type="range"] {
+				flex: 1;
+			}
+
+			#controls {
+				display: flex;
+				justify-content: center;
+				gap: 10px;
+				margin-bottom: 10px;
+			}
+
+			#controls button {
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid #ffffff55;
+				color: #fff;
+				padding: 4px 10px;
+				cursor: pointer;
+				border-radius: 4px;
+			}
+
+			#controls button:hover {
+				background: rgba(255, 255, 255, 0.18);
+			}
+
+			#trackText {
+				font-size: 13px;
+				margin-top: 4px;
+			}
+
+			#trackName {
+				font-weight: bold;
+				margin-bottom: 3px;
+			}
+
+			#trackInfo {
+				opacity: 0.8;
+			}
+
+			.sectionTitle {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-weight: bold;
+				font-size: 13px;
+				color: #C0A060;
+				margin-bottom: 6px;
+				border-bottom: 1px solid #ffffff33;
+				padding-bottom: 2px;
+			}
+
+			#queueWrapper {
+				max-height: 500px;
+				overflow-y: auto;
+				border: 1px solid #ffffff22;
+				border-radius: 4px;
+				padding: 4px 6px;
+				box-sizing: border-box;
+			}
+
+			#queueList {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			#queueList li {
+				padding: 3px 4px;
+				font-size: 13px;
+				cursor: grab;
+				border-radius: 3px;
+			}
+
+			#queueList li.current {
+				background: rgba(255, 255, 255, 0.18);
+			}
+
+			#queueList li:hover {
+				background: rgba(255, 255, 255, 0.12);
+			}
+
+			#selectorWrapper {
+				max-height: 600px;
+				overflow-y: auto;
+				border: 1px solid #ffffff22;
+				border-radius: 4px;
+				padding: 4px 6px;
+				box-sizing: border-box;
+				margin-bottom: 4px;
+			}
+
+			#selectorList {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			#selectorList li {
+				padding: 3px 4px;
+				font-size: 13px;
+				cursor: pointer;
+				border-radius: 3px;
+			}
+
+			#selectorList li:hover {
+				background: rgba(255, 255, 255, 0.12);
+			}
+
+			#danzaHudScrollArea::-webkit-scrollbar,
+			#queueWrapper::-webkit-scrollbar,
+			#selectorWrapper::-webkit-scrollbar {
+				width: 8px;
+			}
+
+			#danzaHudScrollArea::-webkit-scrollbar-track,
+			#queueWrapper::-webkit-scrollbar-track,
+			#selectorWrapper::-webkit-scrollbar-track {
+				background: rgba(255, 255, 255, 0.08);
+				border-radius: 4px;
+			}
+
+			#danzaHudScrollArea::-webkit-scrollbar-thumb,
+			#queueWrapper::-webkit-scrollbar-thumb,
+			#selectorWrapper::-webkit-scrollbar-thumb {
+				background: rgba(255, 255, 255, 0.35);
+				border-radius: 4px;
+			}
+
+			#danzaHudScrollArea::-webkit-scrollbar-thumb:hover,
+			#queueWrapper::-webkit-scrollbar-thumb:hover,
+			#selectorWrapper::-webkit-scrollbar-thumb:hover {
+				background: rgba(255, 255, 255, 0.55);
+			}
+			
+			#volumeRow {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 0px;
+			}
+
+			#volumeBar {
+				flex: 1;
+			}
+			
+			.dragHandle {
+				cursor: grab;
+				margin-right: 6px;
+				opacity: 0.6;
+				font-weight: bold;
+				font-size: 14px;
+			}
+			
+			.hudBtn {
+				background: rgba(255,255,255,0.08);
+				border: 1px solid #ffffff33;
+				color: #fff;
+				padding: 2px 8px;
+				font-size: 12px;
+				border-radius: 4px;
+				cursor: pointer;
+				transition: background 0.2s ease;
+			}
+
+			.hudBtn:hover {
+				background: rgba(255,255,255,0.18);
+			}
+			
+			#volumeRow.hidden {
+				display: none;
+			}
+
+			
+		</style>
+	</head>
+
+	<body>
+
+		<div id="danzaHudToggle"></div>
+
+		<div id="danzaHud">
+			<div id="danzaHudHeader">
+				<span>Danzas de Juan Morel Campos</span>
+				<button id="danzaHudCloseBtn">✕</button>
+			</div>
+
+			<div id="danzaSearchBar">
+				<input id="danzaSearch" type="text" placeholder="Buscar danza..." />
+			</div>
+			
+			
+			<div id="danzaHudScrollArea">
+				
+				<img id="volImage" src="" width="260" style="border:2px solid #ffffffaa; margin:10px auto 15px; display:block;">
+				
+				<div id="playerSection">
+					<div id="timeRow">
+						<span id="currentTime">0:00</span>
+						<input type="range" id="seekBar" min="0" max="100" value="0">
+						<span id="duration">0:00</span>
+					</div>
+					
+					<div id="volumeRow" class="hidden">
+						<img id="volumeIcon" src="volume.png" style="width:18px; opacity:0.8;">
+						<input type="range" id="volumeBar" min="0" max="1" step="0.01" value="1">
+					</div>
+					
+					<div id="controls">
+						<button id="prevBtn">⏮</button>
+						<button id="playPauseBtn">▶</button>
+						<button id="nextBtn">⏭</button>
+					</div>
+
+					<div id="trackText">
+						<div id="trackName"></div>
+						<div id="trackInfo"></div>
+					</div>
+				</div>
+
+				
+				<div id="queueSection">
+					<div class="sectionTitle">Queue
+						<button id="rerollBtn" class="hudBtn">Reroll</button>
+					</div>
+					<div id="queueWrapper">
+						<ul id="queueList"></ul>
+					</div>
+				</div>
+
+				<div id="selectorSection">
+					<div class="sectionTitle">Danzas de Juan Morel Campos
+						<button id="collapseDanzasBtn" class="hudBtn" style="float:right;">Colapsar</button>
+					</div>
+					<div id="selectorWrapper">
+						<ul id="selectorList"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<audio id="audioPlayer"></audio>
+
+		<div id="pageContent">
+			<center>
+				<font size=6 color=#CFB53B><b>Análisis Armónico de <i><span id="tuRegresoLink" style="cursor:pointer; color:#CFB53B;">"Tu Regreso"</span></i></b></font><br>
+				<font size=5><b>Yazid Sánchez Lebrón</b></font><br>
+				<font size=4><b>Prof. Kristian Pérez McDougall</b></font><br>
+				<font size=4><b>14 de abril de 2026</b></font>
+			</center>
+			<br>
+			
+			<div class="night-panel">
+				<br>
+
+				<table width=800 border=0 cellpadding=20 cellspacing=0>
+					<tr><td>
+
+						<center><img src="danza1.gif" width=650></center>
+
+						<br><br>
+
+						<hr class="star-hr">
+
+						<h2>Biografía de&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:greatvibes; font-size:100%; transform:scaleX(1.35); display:inline-block;">Juan Morel Campos</span></h2>
+
+						<center><img src="Morel_Campos_2.jpg" width=450 border=2></center>
+
+						<hr class="star-hr">
+
+						<br><br>
+
+						<h2>Contexto Histórico</h2>
+
+						<center><img src="Ponce_Bandera.png" width=400 border=2></center>
+
+						<br>
+
+						<ul>
+							<li>Ponce se funda en 1692.</li>
+							<li>Se declara ciudad en 1877.</li>
+							<li>Ponce era un centro cultural y económico muy importante del siglo XIX.</li>
+							<li>Allí se encontraban las personas y lugares más importantes e influyentes de la isla.</li>
+						</ul>
+
+						<hr class="star-hr">
+
+						<h2 id="comienzo-header" style="cursor:pointer;">Comienzo</h2>
+
+						<div id="casa" class="fade">
+							<center><img src="Casa_Morel_Campos.png" width=600 border=2></center>
+						</div>
+
+						<center id="comienzo-table" class="fade">
+							<table cellpadding=10 cellspacing=0 border=0 style="margin:0 auto; display:inline-table;">
+								<tr>
+
+									<td id="td-burger" class="fade" align="center" valign="top">
+									<img src="Burger_King.png" width=280 border=2 style="margin-top:20px;"><br>
+
+									<a id="icon-link" class="fade"
+											href="https://maps.app.goo.gl/bAp2TkYrao9RMegD9" target="_blank">
+										<img src="Globe.jpg" width="45"
+											style="margin-top:6px; border-radius:50%; background:rgba(10,10,30,0.78); padding:3px;">
+									</a>
+									</td>
+
+									<td id="td-church" class="fade" align="center" valign="top">
+										<img src="Church's.png" width=280 border=2>
+									</td>
+
+								</tr>
+							</table>
+							
+						</center>
+
+						<hr class="star-hr">
+
+						<ul>
+							<li>Nace el 16 de mayo de 1857 en Ponce, Puerto Rico.</li>
+							<li>Hijo de:</li>
+							<ul>
+								<li>Manuel Morel Araujo (dominicano)</li>
+								<li>Juana de Dios Campos (venezolana)</li>
+							</ul>
+							<li>Nació a una familia de cierto prestigio.</li>
+						</ul>
+
+						<hr class="star-hr">
+
+						<h2 id="formacion-header" style="cursor:pointer;">Formación Musical</h2>
+
+						<div id="formacion-img" style="display:none; margin-top:10px; margin-bottom:10px;">
+							<center>
+								<img src="Catedral.jpg" width="400" border="2">
+							</center>
+						</div>
+
+
+						<center><img src="Campos_Partituras.jpg" width=400 border=2></center>
+
+						<ul>
+							<li>Inicia estudios musicales a los 8 años.</li>
+							<li>Ya componía danzas a los 14 años bajo la mentoría de Manuel Tavárez.</li>
+							<li>El campaneo de la Iglesia lo inspiró a estudiar música.</li>
+						</ul>
+
+						<hr class="star-hr">
+
+						<h2>Estudios en la Música</h2>
+
+						<center>
+							<table width=700 border=2 bordercolor="000080" cellpadding=10 cellspacing=0>
+								<tr>
+								  <th>Estudio</th>
+								  <th>Mentor</th>
+								</tr>
+								<tr><td>Estudios Básicos</td><td>Francisco Borja Gómez</td></tr>
+								<tr><td>Solfeo y Bombardino</td><td>Vicente Juan</td></tr>
+								<tr><td>Armonía, Flauta y Piano</td><td>Antonio Egipciaco</td></tr>
+								<tr><td>Armonía, Composición, Contrapunto y Piano</td><td>Manuel Gregorio Tavárez</td></tr>
+								<tr><td>Cornetín, Contrabajo y Bombardino</td><td>Bandas Cívicas y Militares</td></tr>
+								<tr><td>Instrumentación y Dirección</td><td>Banda del Batallón de Cazadores del Regimiento de Madrid</td></tr>
+								<tr><td>Casi todos los instrumentos de metal de la orquesta y el órgano</td><td>Mentores no Especificados</td></tr>
+							</table>
+						</center>
+
+						<hr class="star-hr">
+
+						<h2>Desarrollo de la Danza Puertorriqueña</h2>			
+
+						<center><img src="Manuel_Gregorio_Tavarez.jpg" width=200 border=2></center>
+
+						<ul>
+							<li>La danza existía previamente en la forma de la habanera.</li>
+							<li>Manuel Gregorio Tavárez reinventa la danza a una forma elegante y fina.</li>
+							<li>Morel la convierte en una forma bailable.</li>
+							<li>Las composiciones de Morel definen el estilo que hoy se reconoce como danza puertorriqueña.</li>
+						</ul>
+
+						<hr class="star-hr">
+
+						<h2>Carrera Profesional</h2>
+
+						<center><img src="Orquesta.jpg" width=400 border=2></center>
+
+						<br>
+
+						<ul>
+							<li>La feria de exposiciones del 1882 definió el camino de su carrera.</li>
+							<li>Forma su primera orquesta.</li>
+							<li>Gana reconocimiento y prestigio entre públicos apoderados.</li>
+							<li>Se consolida como una figura importante de la música puertorriqueña.</li>
+							<li>Funda la Banda del Cuerpo de Bomberos de Ponce.</li>
+							<li>Lleva la música a espacios públicos, democratizando su acceso.</li>
+							<li>Dirige orquestas y compone para eventos sociales y culturales.</li>
+						</ul>
+
+						<hr class="star-hr">
+
+						<h2 id="muerte-header" style="cursor:pointer;">Muerte</h2>
+
+						<div id="muerte-img" style="display:none; margin-top:10px; margin-bottom:10px;">
+							<center>
+								<img src="TeatroPerla.jpg" width="400" border="2">
+							</center>
+						</div>
+
+
+						<center><img src="Estatua.jpeg" width=400 border=2></center>
+
+						<br>
+
+						<ul>
+							<li>Sufre un ataque cardíaco mientras dirigía en el Teatro La Perla.</li>
+							<li>Fallece el 12 de mayo de 1896, a los 38 años.</li>
+							<li>Su muerte temprana dejó una obra inmensa y un legado muy importante.</li>
+						</ul>
+
+						<hr class="star-hr">
+
+						<h2 id="legado-header" style="cursor:pointer;">Legado</h2>
+
+						<div id="legado-img" style="display:none; margin-top:10px; margin-bottom:10px;">
+							<center>
+								<img src="litografia.jpg" width="400" border="2">
+							</center>
+						</div>
+
+
+						<center><img src="Orquesta_Bomberos.jpg" width=400 border=2></center>
+
+						<br>
+
+						<ul>
+							<li>Fundó más de 3 orquestas.</li>
+							<li>Compuso más de 550 piezas en muchos géneros:</li>
+							<ul>
+								<li>Danzas - 283</li>
+								<li>Piezas Religiosas - 137</li>
+									<li>Melodías - 129
+										<ul>
+											<li>Música Sinfónica - 3</li>
+											<li>Marchas Sinfónicas - 10</li>
+											<li>Mazurcas - 6</li>
+											<li>Marchas Fúnebres - 8</li>
+											<li>Pasodobles - 9</li>
+											<li>Polkas - 5</li>
+											<li>Romanzas - 5</li>
+											<li>Valses - 15</li>
+											<li>Zarzuelas - 4</li>
+											<li>Guarachas - 7</li>
+											<li>Gavotas - 1</li>
+											<li>Himnos - 1</li>
+											<li>Chotis - 1</li>
+											<li>Galopes - 2</li>
+											<li>Popurrí - 1</li>
+											<li>Letanías - 6</li>
+										</ul>
+									</li>
+							</ul>
+							<li>Perfeccionó la danza puertorriqueña.</li>
+							<li>Sus partituras se vendieron fuera de Puerto Rico.</li>
+							<li>Considerado uno de los compositores más importantes del Caribe.</li>
+							<li>Forma parte de la identidad musical puertorriqueña.</li>
+							<li>Su música sigue interpretándose aún hoy en día.</li>
+						</ul>
+
+						<br><br>
+						
+						<hr class="star-hr">
+
+						<h2>Análisis Armónico de “Tu Regreso”</h2>
+
+						<hr class="star-hr">
+
+						<ul>
+						  <li>Tiene 11 sistemas.</li>
+						  <li>Prevalecen los acordes de novena donde todos son A.</li>
+						  <li>Destaca el uso de las notas repetidas.</li>
+						  <li>Todas las cadencias son perfectas.</li>
+						  <li>Tiene un solo motivo en el Paseo.</li>
+						  <li>Su forma es tripartita.</li>
+						</ul>
+						
+						<hr class="star-hr">
+						
+						<center>
+							<h3>Total de Notas de Adorno:</h3>
+							  22 de Paso<br>
+							  13 Bordaduras<br>
+							  7  Anticipatorias<br>
+							  14 Apoyaturas<br>
+							  4  Cambiatas<br>
+							  2  Pedales<br>
+							  2  Escaapatorias<br>
+							  6  Retardos<br>
+						</center>
+						<hr class="star-hr">
+						
+						<center>
+						<h3>Leyenda:</h3>
+						Nota de Paso – <font color="blue">Azul</font><br>
+						Bordadura – <font color="red">Rojo</font><br>
+						Anticipatoria – <font color="green">Verde</font><br>
+						Escapatoria – <font color="violet">Violeta</font><br>
+						Cambiata – <font color="orange">Anaranjado</font><br>
+						Retardo – <font color="pink">Rosa</font><br>
+						Pedal – <font color="#481F01">Marrón</font><br>
+						Apoyatura – <font color="yellow">Amarillo</font><br>
+						</center>
+
+						<br><br>
+						
+						<hr class="star-hr">
+						
+						<center>
+							
+							<img src="Sistema 1.jpeg" width=500><br>
+							  1 Bordadura<br>
+							  3 Paso<br>
+							  2 Anticipatorias<br>
+							  4 Apoyaturas<br><br>
+
+							<img src="Sistema 2.jpeg" width=500><br>
+							  1 Bordadura<br>
+							  3 Paso<br>
+							  2 Apoyaturas<br><br>
+
+							<img src="Sistema 3.jpeg" width=500><br>
+								1 Apoyatura<br><br>
+
+							<img src="Sistema 4.jpeg" width=500><br>
+								2 Apoyaturas<br><br>
+
+							<img src="Sistema 5.jpeg" width=500><br>
+								1 Bordadura<br>
+								2 Paso<br>
+								2 Apoyaturas<br><br>
+
+							<img src="Sistema 6.jpeg" width=500><br>
+								1 Paso<br>
+								1 Apoyatura<br><br>
+
+							<img src="Sistema 7.jpeg" width=500><br>
+								2 Bordaduras<br>
+								4 Paso<br>
+								1 Cambiata<br>
+								4 Retardos<br><br>
+
+							<img src="Sistema 8.jpeg" width=500><br>
+								6 Bordaduras<br>
+								3 Paso<br>
+								1 Anticipatoria<br>
+								2 Apoyaturas<br>
+								2 Cambiatas<br>
+								2 Pedales<br>
+								1 Escapatoria<br><br>
+
+							<img src="Sistema 9.jpeg" width=500><br>
+							  1 Bordadura<br>
+							  1 Paso<br>
+								2 Anticipatorias<br>
+								2 Retardos<br>
+								1 Escapatoria<br><br>
+
+							<img src="Sistema 10.jpeg" width=500><br>
+								1 Bordadura<br>
+								2 Paso<br>
+								2 Anticipatorias<br><br>
+
+							<img src="Sistema 11.jpeg" width=500><br>
+							3 Paso<br>
+							1 Cambiata<br><br>
+							
+						</center>
+
+						<hr class="star-hr">
+						
+						<h2>Referencias:</h2>
+						<br><br>
+						Isla Caribe. (n.d.-a). <i>Ruta Virtual Juan Morel Campos</i>. YouTube. https://www.youtube.com/watch?v=eGuhJ6U7fvg&t=1560s
+						<br><br>
+						Isla Caribe. (n.d.-b). <i>38. Juan Morel Campos</i>. YouTube. https://www.youtube.com/watch?v=EBDOMOXNriI
+						<br><br>
+						Isla Caribe. (n.d.-c). <i>Isla Caribe Podcast Ep. 135 - Celebrando la Danza Puertorriqueña, Juan Morel Campos, y el Podcast</i>. YouTube. https://www.youtube.com/watch?v=DTU9X2Jb_7A
+						<br><br>
+						Isla Caribe. (n.d.-d). <i>Historia, Vestimenta y Arte en la Danza Puertorriqueña</i>. YouTube. https://www.youtube.com/watch?v=vP1Q6Gt8L6w
+						<br><br>
+						Isla Caribe. (n.d.-e). <i>Ep 103 Elisa Tavárez y la Danza Puertorriqueña</i>. YouTube. https://www.youtube.com/watch?v=7ifQAcgP2EA
+						<br><br>
+						Isla Caribe. (n.d.-f). <i>Isla Caribe Podcast Ep. 1: La Danza Puertorriqueña</i>. YouTube. https://www.youtube.com/watch?v=fof9-lrtvQs
+						<br><br>
+						Allende Goitía, Dr. N. (2012, April 13). <i>Juan Morel Campos</i>. EnciclopediaPR. https://enciclopediapr.org/content/juan-morel-campos/
+						<br><br>
+						El Hogar de la Danza Puertorriqueña. (n.d.). <i>Juan Morel Campos</i>. https://www.ladanza.com/morel.htm
+						<br><br>
+						El Hogar de la Danza Puertorriqueña. (n.d.). <i>Manuel Gregorio Tavárez. Manuel G. Tavárez</i>. https://www.ladanza.com/tavarez.htm
+						<br><br>
+						Santiago, J. (2021, January 2). <i>Biznieta de Morel profundiza en Datos Biográficos</i>. Fundación Nacional para la Cultura Popular. https://prpop.org/2021/01/biznieta-de-morel-profundiza-en-datos-biograficos/
+						<br><br>
+						<i>Juan Morel Campos</i>. ACEMLA. (2023, November 15). https://acemla.com/composers/juan-morel-campos/
+						<br><br>
+						<i>Juan Morel Campos</i>. Autógrafo TV. (2025, March 11). https://autografo.tv/juan-morel-campos/
+						<br><br>
+						Hispánica, H. (n.d.). <i>Real Academia de la Historia. Juan Nepomuceno Morel Campos</i>. https://historia-hispanica.rah.es/biografias/32277-juan-nepomuceno-morel-campos
+						<br><br>
+						Puerto Rico, D. (n.d.). <i>Juan Morel Campos: El Musicólogo de Puerto Rico</i>. https://danzasdepuertorico.com/juan-morel-campos-el-musicologo-de-puerto-rico/
+						<br><br>
+						Quiñones, F. J. (2022, May 10). <i>Ponce, Morel Campos y la Danza Puertorriqueña</i>. https://fjmusicpr.com/desde-el-pentagrama-blog/blog/ponce-morel-campos-y-la-danza-puertorriquena
+						<br><br>
+						FamilySearch.org. (n.d.). <i>Juan Nepomuceno Morel Campos</i>. https://ancestors.familysearch.org/es/GX7Q-QQQ/juan-nepomuceno-morel-campos-1857-1896
+						<br><br>
+						Encuentro Puertorriqueño de Creación Musical. (n.d.). <i>Juan Morel Campos</i>. https://publish.illinois.edu/epcm-2023/juan-morel-campos/
+						<br><br>
+
+						<hr class="star-hr">
+						
+					</td></tr>
+				</table>
+				<br><br>
+			</div>
+		</div>
+
+
+
+		<script>
+			document.getElementById("legado-header").addEventListener("click", function () {
+				const img = document.getElementById("legado-img");
+				img.style.display = (img.style.display === "none") ? "block" : "none";
+			});
+
+			document.getElementById("muerte-header").addEventListener("click", function () {
+				const img = document.getElementById("muerte-img");
+				img.style.display = (img.style.display === "none") ? "block" : "none";
+			});
+		
+			document.getElementById("formacion-header").addEventListener("click", function () {
+				const img = document.getElementById("formacion-img");
+				img.style.display = (img.style.display === "none") ? "block" : "none";
+			});
+		
+			let step = 0;
+			const header   = document.getElementById('comienzo-header');
+			const casa     = document.getElementById('casa');
+			const table    = document.getElementById('comienzo-table');
+			const tdChurch = document.getElementById('td-church');
+			const tdBurger = document.getElementById('td-burger');
+			const iconLink = document.getElementById('icon-link');
+
+			header.addEventListener('click', () => {
+				step++;
+
+				if (step === 1) {
+				  casa.classList.add('show');
+				}
+
+				else if (step === 2) {
+					table.classList.add('show');
+					tdChurch.classList.add('show');
+				}
+
+				else if (step === 3) {
+					tdBurger.classList.add('show');
+				}
+
+				else if (step === 4) {
+					iconLink.classList.add('show');
+				}
+			});
+		
+			
+			
+			const danzas = [
+			  {
+				vol: 1,
+				image: "Vol 1.jpg",
+				tracks: [
+				  { file: "1 Influencia del Arte.mp3", name: "Influencia del Arte", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "2 Maldito Amor.mp3", name: "Maldito Amor", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "3 Tu imagen.mp3", name: "Tu imagen", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "4 La Conga.mp3", name: "La Conga", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "5 Sin ti jamás.mp3", name: "Sin ti jamás", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "6 Buen Humor.mp3", name: "Buen Humor", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "7 Idilio.mp3", name: "Idilio", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "8 No te ocupes.mp3", name: "No te ocupes", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "9 Conversación.mp3", name: "Conversación", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "10 Tu divino rostro.mp3", name: "Tu divino rostro", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "11 Virgilia.mp3", name: "Virgilia", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" },
+				  { file: "12 Carmela.mp3", name: "Carmela", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.1" }
+				]
+			  },
+			  {
+				vol: 2,
+				image: "Vol 2.jpg",
+				tracks: [
+				  { file: "1 En Alta Mar.mp3", name: "En Alta Mar", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "2 La Gilda.mp3", name: "La Gilda", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "3 El brazo fuerte.mp3", name: "El brazo fuerte", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "4 La Belleza.mp3", name: "La Belleza", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "5 El rabo de la culebra.mp3", name: "El rabo de la culebra", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "6 Máscaras Alegres.mp3", name: "Máscaras Alegres", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "7 La Mayoría.mp3", name: "La Mayoría", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "8 Por ti suspiro.mp3", name: "Por ti suspiro", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "9 Tuya es mi vida.mp3", name: "Tuya es mi vida", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "10 Ensueños de amor.mp3", name: "Ensueños de amor", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "11 Lamentos de un cesante.mp3", name: "Lamentos de un cesante", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" },
+				  { file: "12 Los Faroles.mp3", name: "Los Faroles", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.2" }
+				]
+			  },
+			  {
+				vol: 3,
+				image: "Vol 3.jpg",
+				tracks: [
+				  { file: "1 ¿Qué será.mp3", name: "¿Qué será?", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "2 Alma Sublime.mp3", name: "Alma Sublime", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "3 Joaquina.mp3", name: "Joaquina", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "4 Tormento.mp3", name: "Tormento", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "5 También lo dudo.mp3", name: "También lo dudo", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "6 Noche Deliciosa.mp3", name: "Noche Deliciosa", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "7 El Ciclón.mp3", name: "El Ciclón", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "8 No me toques.mp3", name: "No me toques", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "9 Tu regreso.mp3", name: "Tu regreso", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "10 Goces y penas.mp3", name: "Goces y penas", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "11 La Julianita.mp3", name: "La Julianita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "12 Sueños dorados.mp3", name: "Sueños dorados", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "13 Bellos Ojos.mp3", name: "Bellos Ojos", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" },
+				  { file: "14 Elvira.mp3", name: "Elvira", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.3" }
+				]
+			  },
+			  {
+				vol: 4,
+				image: "Vol 4.jpg",
+				tracks: [
+				  { file: "1 Si te toco.mp3", name: "Si te toco", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "2 Di que me amas.mp3", name: "Di que me amas", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "3 Un Conflicto.mp3", name: "Un Conflicto", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "4 Candorosa.mp3", name: "Candorosa", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "5 Vano Empeño.mp3", name: "Vano Empeño", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "6 Viva La Pepa.mp3", name: "Viva La Pepa", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "7 Anita.mp3", name: "Anita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "8 No desconfíes.mp3", name: "No desconfíes", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "9 Bendita seas.mp3", name: "Bendita seas", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "10 Mis penas.mp3", name: "Mis penas", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "11 Ten piedad.mp3", name: "Ten piedad", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" },
+				  { file: "12 La Incógnita.mp3", name: "La Incógnita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.4" }
+				]
+			  },
+			  {
+				vol: 5,
+				image: "Vol 5.jpg",
+				tracks: [
+				  { file: "1 La Nene.mp3", name: "La Nene", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "2 Un diálogo.mp3", name: "Un diálogo", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "3 Toda corazón.mp3", name: "Toda corazón", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "4 Placeres de la vida.mp3", name: "Placeres de la vida", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "5 Sin ti no puedo vivir.mp3", name: "Sin ti no puedo vivir", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "6 La Majabaca.mp3", name: "La Majabaca", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "7 Vuelta a la vida.mp3", name: "Vuelta a la vida", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "8 Si me quisieras.mp3", name: "Si me quisieras", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "9 La Lila.mp3", name: "La Lila", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "10 Amor en el Campo.mp3", name: "Amor en el Campo", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "11 Perlas de mi Patria.mp3", name: "Perlas de mi Patria", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" },
+				  { file: "12 Vinagre.mp3", name: "Vinagre", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.5" }
+				]
+			  },
+			  {
+				vol: 6,
+				image: "Vol 6.jpg",
+				tracks: [
+				  { file: "1 Cielo de Encanto.mp3", name: "Cielo de Encanto", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "2 Divina Enriqueta.mp3", name: "Divina Enriqueta", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "3 No me olvides.mp3", name: "No me olvides", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "4 Las dos Marías.mp3", name: "Las dos Marías", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "5 Carnaval.mp3", name: "Carnaval", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "6 La Bella Margot.mp3", name: "La Bella Margot", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "7 Fiesta de Amigos.mp3", name: "Fiesta de Amigos", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "8 El Torbellino.mp3", name: "El Torbellino", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "9 La Bulliciosa.mp3", name: "La Bulliciosa", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "10 La graciosa pareja.mp3", name: "La graciosa pareja", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "11 La Julita.mp3", name: "La Julita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" },
+				  { file: "12 La Sorpresa.mp3", name: "La Sorpresa", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.6" }
+				]
+			  },
+			  {
+				vol: 7,
+				image: "Vol 7.jpg",
+				tracks: [
+				  { file: "1 Gloria.mp3", name: "Gloria", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "2 Hotel Marina.mp3", name: "Hotel Marina", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "3 La niña bonita.mp3", name: "La niña bonita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "4 Angelita.mp3", name: "Angelita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "5 El Mareo.mp3", name: "El Mareo", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "6 Las Máscaras.mp3", name: "Las Máscaras", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "7 De Antifaz.mp3", name: "De Antifaz", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "8 El gato flaco.mp3", name: "El gato flaco", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "9 El poder de una mirada.mp3", name: "El poder de una mirada", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "10 El Trueno.mp3", name: "El Trueno", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "11 Mi Perla.mp3", name: "Mi Perla", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" },
+				  { file: "12 El Gancho.mp3", name: "El Gancho", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.7" }
+				]
+			  },
+			  {
+				vol: 8,
+				image: "Vol 8.jpg",
+				tracks: [
+				  { file: "1 Ausencia.mp3", name: "Ausencia", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "2 La Isabelita.mp3", name: "La Isabelita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "3 Feliz encuentro.mp3", name: "Feliz encuentro", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "4 Herminia.mp3", name: "Herminia", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "5 Soñando.mp3", name: "Soñando", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "6 Consuelo.mp3", name: "Consuelo", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "7 La Fumadora.mp3", name: "La Fumadora", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "8 Bella Ilusión.mp3", name: "Bella Ilusión", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "9 La Feria.mp3", name: "La Feria", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "10 No me martirices.mp3", name: "No me martirices", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" },
+				  { file: "11 La Traviesa.mp3", name: "La Traviesa", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.8" }
+				]
+			  },
+			  {
+				vol: 9,
+				image: "Vol 9.jpg",
+				tracks: [
+				  { file: "1 En Alta Mar.mp3", name: "En Alta Mar", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "2 La Gilda.mp3", name: "La Gilda", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "3 El brazo fuerte.mp3", name: "El brazo fuerte", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "4 La Belleza.mp3", name: "La Belleza", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "5 El rabo de la culebra.mp3", name: "El rabo de la culebra", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "6 Máscaras Alegres.mp3", name: "Máscaras Alegres", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "7 La Mayoría.mp3", name: "La Mayoría", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "8 Por ti suspiro.mp3", name: "Por ti suspiro", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "9 Tuya es mi vida.mp3", name: "Tuya es mi vida", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "10 Ensueños de amor.mp3", name: "Ensueños de amor", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "11 Lamentos de un cesante.mp3", name: "Lamentos de un cesante", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" },
+				  { file: "12 Los Faroles.mp3", name: "Los Faroles", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.9" }
+				]
+			  },
+			  {
+				vol: 10,
+				image: "Vol 10.jpg",
+				tracks: [
+				  { file: "1 Mi Súplica.mp3", name: "Mi Súplica", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "2 Amor Increscendo.mp3", name: "Amor Increscendo", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "3 La Generosa.mp3", name: "La Generosa", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "4 Música Clásica.mp3", name: "Música Clásica", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "5 El último adiós.mp3", name: "El último adiós", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "6 El Microbio.mp3", name: "El Microbio", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "7 La niña de los ojos bonitos.mp3", name: "La niña de los ojos bonitos", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "8 Un recuerdo.mp3", name: "Un recuerdo", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "9 Sarito.mp3", name: "Sarito", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" },
+				  { file: "10 La Luisita.mp3", name: "La Luisita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.10" }
+				]
+			  },
+			  {
+				vol: 11,
+				image: "Vol 11.jpg",
+				tracks: [
+				  { file: "1 Flores Silvestres.mp3", name: "Flores Silvestres", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "2 Por qué no me amas.mp3", name: "Por qué no me amas", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "3 El Bouquet.mp3", name: "El Bouquet", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "4 Anónima.mp3", name: "Anónima", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "5 Un baile de máscaras.mp3", name: "Un baile de máscaras", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "6 Las dos hermanas.mp3", name: "Las dos hermanas", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "7 Robinson.mp3", name: "Robinson", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "8 Paula, camisa sucia.mp3", name: "Paula, camisa sucia", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "9 La bella trigueñita.mp3", name: "La bella trigueñita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "10 El Mangó.mp3", name: "El Mangó", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" },
+				  { file: "11 El Bacalao.mp3", name: "El Bacalao", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.11" }
+				]
+			  },
+			  {
+				vol: 12,
+				image: "Vol 12.jpg",
+				tracks: [
+				  { file: "1 Acuérdate de mi.mp3", name: "Acuérdate de mi", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "2 La Lolita.mp3", name: "La Lolita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "3 Graciosa niña.mp3", name: "Graciosa niña", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "4 La Carlotita.mp3", name: "La Carlotita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "5 Contémplame.mp3", name: "Contémplame", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "6 La caña de Veracruz.mp3", name: "La caña de Veracruz", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "7 La Lupita.mp3", name: "La Lupita", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "8 Lo de siempre.mp3", name: "Lo de siempre", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "9 Simpatías.mp3", name: "Simpatías", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "10 La gallina ciega.mp3", name: "La gallina ciega", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "11 La Rutina.mp3", name: "La Rutina", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" },
+				  { file: "12 El cognac Jerez.mp3", name: "El cognac Jerez", info: "Jesús María Sanromá, intérprete | Danzas de Morel Campos Vol.12" }
+				]
+			  }
+			];
+
+			document.addEventListener("DOMContentLoaded", () => {
+				
+				const hud = document.getElementById("danzaHud");
+				const hudToggle = document.getElementById("danzaHudToggle");
+				const hudClose = document.getElementById("danzaHudCloseBtn");
+				const audio = document.getElementById("audioPlayer");
+				const playPauseBtn = document.getElementById("playPauseBtn");
+				const nextBtn = document.getElementById("nextBtn");
+				const prevBtn = document.getElementById("prevBtn");
+				const seekBar = document.getElementById("seekBar");
+				const currentTimeEl = document.getElementById("currentTime");
+				const durationEl = document.getElementById("duration");
+				const trackNameEl = document.getElementById("trackName");
+				const trackInfoEl = document.getElementById("trackInfo");
+				const queueListEl = document.getElementById("queueList");
+				const selectorListEl = document.getElementById("selectorList");
+				const searchInput = document.getElementById("danzaSearch");
+				const selectorWrapper = document.getElementById("selectorWrapper");
+				const tuRegresoLink = document.getElementById("tuRegresoLink");
+				const volumeBar = document.getElementById("volumeBar");
+				const collapseBtn = document.getElementById("collapseDanzasBtn");
+				const rerollBtn = document.getElementById("rerollBtn");
+				const volImage = document.getElementById("volImage");
+				
+				let volIndex = 0;
+				let trackIndex = 0;
+				let rngSeed = Date.now();
+				let playQueue = [];     
+				let playHistory = [];   
+				let queueIndex = 0;  
+				let draggedIndex = null;
+				let danzasCollapsed = false;
+				
+				hudToggle.addEventListener("click", () => {
+					hud.classList.add("open");
+				});
+
+				hudClose.addEventListener("click", () => {
+					hud.classList.remove("open");
+				});
+
+				playPauseBtn.addEventListener("click", () => {
+					if (audio.paused) playTrack();
+					else pauseTrack();
+				});
+
+				nextBtn.addEventListener("click", nextTrack);
+				prevBtn.addEventListener("click", prevTrack);
+
+				audio.addEventListener("timeupdate", () => {
+					if (!audio.duration) return;
+					const pct = (audio.currentTime / audio.duration) * 100;
+					seekBar.value = pct;
+					currentTimeEl.textContent = formatTime(audio.currentTime);
+					durationEl.textContent = formatTime(audio.duration);
+				});
+
+				seekBar.addEventListener("input", () => {
+					if (!audio.duration) return;
+					const pct = seekBar.value / 100;
+					audio.currentTime = pct * audio.duration;
+				});
+
+				audio.addEventListener("ended", () => {
+					nextTrack();
+				});
+
+				searchInput.addEventListener("input", () => {
+					const q = searchInput.value.toLowerCase().trim();
+					selectorListEl.innerHTML = "";
+
+					if (!q) {
+						buildSelectorList();
+						return;
+					}
+
+					for (let v = 0; v < danzas.length; v++) {
+						for (let t = 0; t < danzas[v].tracks.length; t++) {
+							const track = danzas[v].tracks[t];
+							if (track.name.toLowerCase().includes(q)) {
+								const li = document.createElement("li");
+								li.textContent = `${track.name} (Vol. ${danzas[v].vol})`;
+								li.addEventListener("click", () => {
+									const newItem = { v, t };
+									playQueue.splice(queueIndex + 1, 0, newItem);
+									queueIndex = queueIndex + 1;
+									loadFromQueue();
+									playTrack();
+									updateQueueViewer();
+								});
+								selectorListEl.appendChild(li);
+							}
+						}
+					}
+				});
+				
+				volumeBar.addEventListener("input", () => {
+					audio.volume = volumeBar.value;
+				});
+				
+				collapseBtn.addEventListener("click", () => {
+					danzasCollapsed = !danzasCollapsed;
+					selectorWrapper.style.display = danzasCollapsed ? "none" : "block";
+					collapseBtn.textContent = danzasCollapsed ? "Expandir" : "Colapsar";
+				});
+				
+				rerollBtn.addEventListener("click", () => {
+					const tuRegreso = playQueue[0];
+					playQueue = [tuRegreso];
+					queueIndex = 0;
+					generateNextTracks(20);
+					loadFromQueue();
+					updateQueueViewer();
+				});
+				
+				volImage.addEventListener("click", () => {
+					const row = document.getElementById("volumeRow");
+					row.classList.toggle("hidden");
+				});
+				
+				function seededRandom(seed) {
+					let x = Math.sin(seed++) * 10000;
+					return x - Math.floor(x);
+				}
+				
+				function initQueue() {
+					let tuRegreso = null;
+					for (let v = 0; v < danzas.length; v++) {
+						for (let t = 0; t < danzas[v].tracks.length; t++) {
+							if (danzas[v].tracks[t].name.toLowerCase() === "tu regreso") {
+								tuRegreso = { v, t };
+								break;
+							}
+						}
+						if (tuRegreso) break;
+					}
+
+					if (!tuRegreso) {
+						tuRegreso = { v: 0, t: 0 };
+					}
+
+					playQueue = [];
+					playHistory = [];
+					queueIndex = 0;
+
+					playQueue.push(tuRegreso);
+					generateNextTracks(20);
+					loadFromQueue();
+					updateQueueViewer();
+				}
+
+				function generateNextTracks(count = 20) {
+					for (let i = 0; i < count; i++) {
+						rngSeed++;
+						let v = Math.floor(seededRandom(rngSeed) * danzas.length);
+						let t = Math.floor(seededRandom(rngSeed + 999) * danzas[v].tracks.length);
+						playQueue.push({ v, t });
+					}
+				}
+
+				function loadFromQueue() {
+					const item = playQueue[queueIndex];
+					if (!item) return;
+					volIndex = item.v;
+					trackIndex = item.t;
+					loadTrack();
+				}
+
+				function nextTrack() {
+					if (playQueue[queueIndex]) {
+						playHistory.push(playQueue[queueIndex]);
+					}
+
+					queueIndex++;
+
+					if (queueIndex >= playQueue.length) {
+						generateNextTracks(20);
+					}
+
+					loadFromQueue();
+					playTrack();
+					updateQueueViewer();
+				}
+
+				function prevTrack() {
+					if (queueIndex === 0) return;
+					queueIndex--;
+					loadFromQueue();
+					playTrack();
+					updateQueueViewer();
+				}
+
+				function loadTrack() {
+					const track = danzas[volIndex].tracks[trackIndex];
+					audio.src = `Danzas/Vol ${danzas[volIndex].vol}/${track.file}`;
+					trackNameEl.textContent = track.name;
+					trackInfoEl.textContent = `Vol. ${danzas[volIndex].vol} • ${track.info || ""}`;
+					const volImage = document.getElementById("volImage");
+					volImage.src = `Danzas/Vol ${danzas[volIndex].vol}/Vol ${danzas[volIndex].vol}.jpg`;
+				}
+
+				function playTrack() {
+					audio.play();
+					playPauseBtn.textContent = "⏸";
+				}
+
+				function pauseTrack() {
+					audio.pause();
+					playPauseBtn.textContent = "▶";
+				}
+
+				function formatTime(sec) {
+					sec = Math.floor(sec);
+					const m = Math.floor(sec / 60);
+					const s = sec % 60;
+					return `${m}:${s.toString().padStart(2, "0")}`;
+				}
+
+				function updateQueueViewer() {
+					queueListEl.innerHTML = "";
+					for (let i = 0; i < playQueue.length; i++) {
+						const item = playQueue[i];
+						const track = danzas[item.v].tracks[item.t];
+						const li = document.createElement("li");
+						li.textContent = track.name;
+						li.innerHTML = `<span class="dragHandle">≡</span> ${track.name}`;
+						li.draggable = i !== 0; 
+						if (i === queueIndex) li.classList.add("current");
+
+						li.addEventListener("click", () => {
+							queueIndex = i;
+							loadFromQueue();
+							playTrack();
+							updateQueueViewer();
+						});
+
+						li.addEventListener("dragstart", () => {
+							draggedIndex = i;
+						});
+
+						li.addEventListener("dragover", (e) => {
+							e.preventDefault();
+						});
+
+						li.addEventListener("drop", () => {
+							if (draggedIndex === null) return;
+							if (draggedIndex === 0 || i === 0) return;
+							const item = playQueue.splice(draggedIndex, 1)[0];
+							playQueue.splice(i, 0, item);
+							draggedIndex = null;
+							updateQueueViewer();
+						});
+
+						queueListEl.appendChild(li);
+					}
+				}
+
+				function buildSelectorList() {
+					selectorListEl.innerHTML = "";
+					for (let v = 0; v < danzas.length; v++) {
+						const volHeader = document.createElement("li");
+						volHeader.textContent = `Vol. ${danzas[v].vol}`;
+						volHeader.style.fontWeight = "bold";
+						volHeader.style.opacity = "0.8";
+						selectorListEl.appendChild(volHeader);
+
+						for (let t = 0; t < danzas[v].tracks.length; t++) {
+							const track = danzas[v].tracks[t];
+							const li = document.createElement("li");
+							li.textContent = `• ${track.name}`;
+							li.addEventListener("click", () => {
+								const newItem = { v, t };
+								playQueue.splice(queueIndex + 1, 0, newItem);
+								queueIndex = queueIndex + 1;
+								loadFromQueue();
+								playTrack();
+								updateQueueViewer();
+							});
+							selectorListEl.appendChild(li);
+						}
+					}
+				}
+			
+				if (tuRegresoLink) {
+					tuRegresoLink.addEventListener("click", () => {
+						hud.classList.add("open");
+						initQueue();
+						playTrack();
+					});
+				}
+				
+				
+			initQueue();
+			buildSelectorList();
+		});
+
+	</script>
+
+	</body>
+</html>
